@@ -2,76 +2,76 @@ import pygame, sys, random
  
 pygame.init()
  
-WIDTH, HEIGHT = 1280, 720
+LARGURA, ALTURA = 1280, 720
  
-FONT = pygame.font.SysFont("Consolas", int(WIDTH/20))
+FONTE = pygame.font.SysFont("Consolas", int(LARGURA/20))
  
-SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+TELA = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Pong!")
-CLOCK = pygame.time.Clock()
+RELOGIO = pygame.time.Clock()
 
-player = pygame.Rect(WIDTH-110, HEIGHT/2-50, 10, 100)
-opponent = pygame.Rect(110, HEIGHT/2-50, 10, 100)
-player_score, opponent_score = 0, 0 
+jogador = pygame.Rect(LARGURA-110, ALTURA/2-50, 10, 100)
+oponente = pygame.Rect(110, ALTURA/2-50, 10, 100)
+pontuacao_jogador, pontuacao_oponente = 0, 0 
 
-ball = pygame.Rect(WIDTH/2-10, HEIGHT/2-10, 20, 20)
-x_speed, y_speed = 1, 1
+bola = pygame.Rect(LARGURA/2-10, ALTURA/2-10, 20, 20)
+velocidade_x, velocidade_y = 1, 1
 
 while True:
-    keys_pressed = pygame.key.get_pressed()
+    teclas_pressionadas = pygame.key.get_pressed()
 
-    if keys_pressed[pygame.K_UP]:
-        if player.top > 0:
-            player.top -= 2
-    if keys_pressed[pygame.K_DOWN]:
-        if player.bottom < HEIGHT:
-            player.bottom += 2
+    if teclas_pressionadas[pygame.K_UP]:
+        if jogador.top > 0:
+            jogador.top -= 2
+    if teclas_pressionadas[pygame.K_DOWN]:
+        if jogador.bottom < ALTURA:
+            jogador.bottom += 2
 
-    if keys_pressed[pygame.K_w]:
-        if opponent.top > 0:
-            opponent.top -= 2
-    if keys_pressed[pygame.K_s]:
-        if opponent.bottom < HEIGHT:
-            opponent.bottom += 2
+    if teclas_pressionadas[pygame.K_w]:
+        if oponente.top > 0:
+            oponente.top -= 2
+    if teclas_pressionadas[pygame.K_s]:
+        if oponente.bottom < ALTURA:
+            oponente.bottom += 2
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-    if ball.y >= HEIGHT:
-        y_speed = -1
-    if ball.y <= 0:
-        y_speed = 1
-    if ball.x <= 0:
-        player_score += 1
-        ball.center = (WIDTH/2, HEIGHT/2)
-        x_speed, y_speed = random.choice([1, -1]),  random.choice([1, -1])
-    if ball.x >= WIDTH:
-        opponent_score += 1
-        ball.center = (WIDTH/2, HEIGHT/2)
-        x_speed, y_speed = random.choice([1, -1]),  random.choice([1, -1])
-    if player.x - ball.width <= ball.x <= player.x and ball.y in range(player.top-ball.width, player.bottom+ball.width):
-        x_speed = -1
-    if opponent.x - ball.width <= ball.x <= opponent.x and ball.y in range(opponent.top-ball.width, opponent.bottom+ball.width):
-        x_speed = 1
+    if bola.y >= ALTURA:
+        velocidade_y = -1
+    if bola.y <= 0:
+        velocidade_y = 1
+    if bola.x <= 0:
+        pontuacao_jogador += 1
+        bola.center = (LARGURA/2, ALTURA/2)
+        velocidade_x, velocidade_y = random.choice([1, -1]), random.choice([1, -1])
+    if bola.x >= LARGURA:
+        pontuacao_oponente += 1
+        bola.center = (LARGURA/2, ALTURA/2)
+        velocidade_x, velocidade_y = random.choice([1, -1]), random.choice([1, -1])
+    if jogador.x - bola.width <= bola.x <= jogador.x and bola.y in range(jogador.top-bola.width, jogador.bottom+bola.width):
+        velocidade_x = -1
+    if oponente.x - bola.width <= bola.x <= oponente.x and bola.y in range(oponente.top-bola.width, oponente.bottom+bola.width):
+        velocidade_x = 1
 
-    ball.x += x_speed * 2
-    ball.y += y_speed * 2
+    bola.x += velocidade_x * 2
+    bola.y += velocidade_y * 2
 
-    player_score_text = FONT.render(str(player_score), True, "white")
-    opponent_score_text = FONT.render(str(opponent_score), True, "white")
+    texto_pontuacao_jogador = FONTE.render(str(pontuacao_jogador), True, "white")
+    texto_pontuacao_oponente = FONTE.render(str(pontuacao_oponente), True, "white")
 
+    TELA.fill("black")
 
-    SCREEN.fill("black")
+    pygame.draw.rect(TELA, "light pink", jogador)
+    pygame.draw.rect(TELA, "light blue", oponente)
+    pygame.draw.circle(TELA, "light yellow", bola.center, 10)
 
-    pygame.draw.rect(SCREEN, "light pink", player)
-    pygame.draw.rect(SCREEN, "light blue", opponent)
-    pygame.draw.circle(SCREEN, "light yellow", ball.center, 10)
-
-    SCREEN.blit(player_score_text, (WIDTH/2+50, 50))
-    SCREEN.blit(opponent_score_text, (WIDTH/2-50, 50))
+    TELA.blit(texto_pontuacao_jogador, (LARGURA/2+50, 50))
+    TELA.blit(texto_pontuacao_oponente, (LARGURA/2-50, 50))
  
     pygame.display.update()
-    CLOCK.tick(300)
+    RELOGIO.tick(300)
+
 
