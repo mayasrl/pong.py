@@ -50,12 +50,6 @@ O projeto reforça habilidades de programação gráfica, animação e manipula�
 
 ---
 
-## Observações
-
-- O projeto foi criado principalmente para fins **didáticos**, demonstrando conceitos essenciais de computação gráfica e programação de jogos em Python.  
-
----
-
 <p align="center">
   Desenvolvido com 💛 por <strong>@mayasrl</strong>.
 </p>
