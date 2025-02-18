@@ -19,14 +19,9 @@ O projeto reforça habilidades de programação gráfica, animação e manipula�
 ---
 
 ## Imagens do Projeto
-
-**Tela Inicial do Jogo**  
+ 
 ![Tela Inicial](https://github.com/user-attachments/assets/0e296840-537e-4ba9-bb3e-2cacd5e6e94a)
-
-**Jogo em Andamento**  
 ![Jogo em andamento](https://github.com/user-attachments/assets/358d1e57-2ec0-4fe4-b4d1-6be9d4f6b307)
-
-**Movimento da Bola**  
 ![Movimento da Bola](https://github.com/user-attachments/assets/251cce6d-7395-4d26-9972-6db5bdcfc01d)
 
 ---
